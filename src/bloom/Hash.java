@@ -1,3 +1,5 @@
+package bloom;
+
 public class Hash {
      boolean[] bitArray;
     int m; // size of the bit array
