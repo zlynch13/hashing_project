@@ -1,7 +1,7 @@
 package bitarray;
 
 public class BitArray {
-    private static long[] bitArray;
+    public static long[] bitArray;
 
     public static void allocate(int size) {
         bitArray = new long[(size+63)/64];
