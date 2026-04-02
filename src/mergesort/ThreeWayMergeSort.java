@@ -4,11 +4,14 @@ import java.util.Random;
 public class ThreeWayMergeSort {
     private static void threeWaySort(int[] arr, int leftSide, int rightSide) {
 //     if (rightSide <= leftSide) return;
-        if (rightSide - leftSide < 2) return;
+        if (leftSide >= rightSide) return;
 
-        int oneThird = (rightSide - leftSide)/3;
+        int oneThird = (rightSide - leftSide+1)/3;
         int leftMid = leftSide + oneThird;
         int rightMid = leftSide + 2*oneThird;
+        if (rightMid >= rightSide) {
+            rightMid = rightSide -1;
+        }
 
         threeWaySort(arr, leftSide, leftMid);
         threeWaySort(arr, leftMid+1, rightMid);
@@ -24,9 +27,9 @@ public class ThreeWayMergeSort {
         int[] l =  new int[llength];
         int[] m = new int[mlength];
         int[] r = new int[rlength];
-        int i = 0;
-        int j = 0;
-        int k = 0;
+        int i;
+        int j;
+        int k;
         for (i = 0; i < llength; i++) l[i] = arr[leftSide+i];
         for (j = 0; j < mlength; j++) m[j] = arr[leftMid+j+1];
         for (k = 0; k < rlength; k++) r[k] = arr[rightMid+k+1];
@@ -105,11 +108,15 @@ public class ThreeWayMergeSort {
 
     private static void threeWaySort(double[] arr, int leftSide, int rightSide) {
 //     if (rightSide <= leftSide) return;
-        if (rightSide - leftSide < 2) return;
+        if (leftSide >= rightSide) return;
 
-        int oneThird = (rightSide - leftSide)/3;
+        int oneThird = (rightSide - leftSide+1)/3;
         int leftMid = leftSide + oneThird;
         int rightMid = leftSide + 2*oneThird;
+
+        if (rightMid >= rightSide) {
+            rightMid = rightSide -1;
+        }
 
         threeWaySort(arr, leftSide, leftMid);
         threeWaySort(arr, leftMid+1, rightMid);
@@ -224,6 +231,15 @@ public class ThreeWayMergeSort {
         threeWaySort(intTest, 0, size - 1);
         long finish = System.nanoTime();
         System.out.println(size + " Integer Array time in ms: " + (finish - start) / 1000000.0 );
+        boolean notFailed = true;
+        for (int i = 0; i < size-1; i++) {
+            if (intTest[i] > intTest[i+1]) {
+                notFailed = false;
+            }
+        }
+        if (!notFailed) {
+            System.out.println("Failure");
+        }
     }
     public static void runDoubleTest(int size, Random rand) {
 //        Random rand = new Random();
@@ -235,6 +251,15 @@ public class ThreeWayMergeSort {
         threeWaySort(doubleTest, 0, size - 1);
         long finish = System.nanoTime();
         System.out.println(size + " Double Array time in ms: " + (finish - start) / 1000000.0 );
+        boolean notFailed = true;
+        for (int i = 0; i < size-1; i++) {
+            if (doubleTest[i] > doubleTest[i+1]) {
+                notFailed = false;
+            }
+        }
+        if (!notFailed) {
+            System.out.println("Failure");
+        }
     }
     public static void main(String[] args) {
         testTime();
@@ -249,7 +274,7 @@ public class ThreeWayMergeSort {
             warmup[i] = rand.nextInt();
         }
         mainMerge(warmup);
-        for (int exp = 0; exp < 9; exp++) {
+        for (int exp = 0; exp < 7; exp++) {
             int size = 1 << (20+exp);
 
             runIntTest(size, rand);
