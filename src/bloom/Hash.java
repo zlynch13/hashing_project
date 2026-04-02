@@ -1,14 +1,14 @@
 package bloom;
+import bitarray.BitArray;
 
 public class Hash {
-     boolean[] bitArray;
     int m; // size of the bit array
     int k; // number of indices per key
 
     public Hash(int m, int k) {
         this.m = m;
         this.k = k;
-        this.bitArray = new boolean[m];
+        BitArray.allocate(m);
     }
 
     // First base hash
@@ -42,13 +42,15 @@ public class Hash {
 
     public void insert(String key) {
         for (int idx : getIndices(key)) {
-            bitArray[idx] = true;
+            BitArray.set_bit(idx);
         }
     }
 
     public boolean query(String key) {
         for (int idx : getIndices(key)) {
-            if (!bitArray[idx]) return false;
+            if (!BitArray.check_bit(idx)) {
+                 return false;
+            }
         }
         return true;
     }
