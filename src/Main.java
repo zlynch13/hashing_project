@@ -1,6 +1,7 @@
-public class Main {
+import bloom.BloomFilterSizer;
 
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Project running.");
+        BloomFilterSizer.printSizingReport(900000, 0.01);
     }
 }
