@@ -231,14 +231,11 @@ public class ThreeWayMergeSort {
         threeWaySort(intTest, 0, size - 1);
         long finish = System.nanoTime();
         System.out.println(size + " Integer Array time in ms: " + (finish - start) / 1000000.0 );
-        boolean notFailed = true;
         for (int i = 0; i < size-1; i++) {
             if (intTest[i] > intTest[i+1]) {
-                notFailed = false;
+                System.out.println("Failure");
+                break;
             }
-        }
-        if (!notFailed) {
-            System.out.println("Failure");
         }
     }
     public static void runDoubleTest(int size, Random rand) {
@@ -251,14 +248,11 @@ public class ThreeWayMergeSort {
         threeWaySort(doubleTest, 0, size - 1);
         long finish = System.nanoTime();
         System.out.println(size + " Double Array time in ms: " + (finish - start) / 1000000.0 );
-        boolean notFailed = true;
         for (int i = 0; i < size-1; i++) {
             if (doubleTest[i] > doubleTest[i+1]) {
-                notFailed = false;
+                System.out.println("Failure");
+                break;
             }
-        }
-        if (!notFailed) {
-            System.out.println("Failure");
         }
     }
     public static void main(String[] args) {
@@ -273,7 +267,7 @@ public class ThreeWayMergeSort {
         for (int i = 0; i < sizeWarmup; i++) {
             warmup[i] = rand.nextInt();
         }
-        mainMerge(warmup);
+        warmup = mainMerge(warmup);
         for (int exp = 0; exp < 7; exp++) {
             int size = 1 << (20+exp);
 
