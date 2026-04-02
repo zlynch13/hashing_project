@@ -125,9 +125,9 @@ public class ThreeWayMergeSort {
         double[] l =  new double[llength];
         double[] m = new double[mlength];
         double[] r = new double[rlength];
-        int i = 0;
-        int j = 0;
-        int k = 0;
+        int i;
+        int j;
+        int k;
         for (i = 0; i < llength; i++) l[i] = arr[leftSide+i];
         for (j = 0; j < mlength; j++) m[j] = arr[leftMid+j+1];
         for (k = 0; k < rlength; k++) r[k] = arr[rightMid+k+1];
