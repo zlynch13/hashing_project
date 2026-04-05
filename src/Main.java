@@ -47,13 +47,14 @@ public class Main {
         for (String hash : negativeSet) {
             if (filter.query(hash)) falsePositives++;
         }
-
-        double fpRate   = (double) falsePositives / negativeSet.size() * 100;
+        double expected = (double) falsePositives/ negativeSet.size() * 100;
+        double fpRate   = Math.pow(1 - Math.exp(-(double) k * trainSize / m), k) * 100;
 
         System.out.println("Negative test results:");
         System.out.println("  Queried:           " + negativeSet.size());
         System.out.println("  False positives:   " + falsePositives);
-        System.out.printf( "  FP rate:  %.4f%%%n\n", fpRate);
+        System.out.printf( "  Measured FP rate:  %.4f%%%n", fpRate);
+        System.out.printf( "  Expected FP rate:  %.4f%%%n", expected);
 
         // Speed test
         int trials = 1000;
