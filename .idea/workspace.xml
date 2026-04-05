@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cff57b6-e019-418d-a555-ce2aeaa37ce7" name="Changes" comment="implementation of classes to insert, query, and negative test bit array. Does not include pwnedpasswords due to it being 82 gb.">
+    <list default="true" id="8cff57b6-e019-418d-a555-ce2aeaa37ce7" name="Changes" comment="added an expected FP rate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/hashing_project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hashing_project/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -129,7 +129,7 @@
       <option name="presentableId" value="Default" />
       <updated>1774978029598</updated>
       <workItem from="1775179651448" duration="75000" />
-      <workItem from="1775346824695" duration="8491000" />
+      <workItem from="1775346824695" duration="9483000" />
     </task>
     <task id="LOCAL-00001" summary="implementation of classes to insert, query, and negative test bit array. Does not include pwnedpasswords due to it being 82 gb.">
       <option name="closed" value="true" />
@@ -147,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775399150274</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added an expected FP rate">
+      <option name="closed" value="true" />
+      <created>1775400171954</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775400171955</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +163,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implementation of classes to insert, query, and negative test bit array. Does not include pwnedpasswords due to it being 82 gb." />
-    <option name="LAST_COMMIT_MESSAGE" value="implementation of classes to insert, query, and negative test bit array. Does not include pwnedpasswords due to it being 82 gb." />
+    <MESSAGE value="added an expected FP rate" />
+    <option name="LAST_COMMIT_MESSAGE" value="added an expected FP rate" />
   </component>
 </project>

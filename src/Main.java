@@ -9,7 +9,7 @@ public class Main {
         int k = 7;
         Hash filter = new Hash(m, k);
 
-        String filePath = "pwnedpasswords.txt";
+        String filePath = "pwnedpasswords_small.txt";
         int totalToLoad = 1000000; // 1 million samples
         int trainSize   = 800000;  // 80% train 20% negative
 
