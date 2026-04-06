@@ -63,7 +63,7 @@ public class Main {
         System.out.println("  Queried:           " + negativeSet.size());
         System.out.println("  False positives:   " + falsePositives);
         System.out.printf( "  Measured FP rate:  %.4f%%%n", fpRate);
-        System.out.printf( "  Expected FP rate:  %.4f%%%n", expected);
+        System.out.printf( "  Expected FP rate:  %.4f%%%n", expected * 100);
 
         // Speed test
         int trials = 1000;
