@@ -286,15 +286,15 @@ public class ThreeWayMergeSort {
         }
 
         warmup = mainMerge(warmup);
-        for (int exp = 0; exp < 7; exp++) {
+        for (int exp = 0; exp < 11; exp++) {
             int size = 1 << (20+exp);
             double intTime = 0.0;
             double doubleTime = 0.0;
             int runs = 10;
             for (int j = 0; j < runs; j++)
             {
-                intTime += runIntTest(size, rand);
-                doubleTime += runDoubleTest(size, rand);
+                 intTime += (runIntTest(size, rand));
+                 doubleTime += runDoubleTest(size, rand);
             }
             System.out.println("2^" + (20+exp) + " Integer average Array time in ms: " + intTime/ runs);
             System.out.println("2^" + (20+exp) + " Double average Array time in ms: " + doubleTime/ runs);
