@@ -32,7 +32,7 @@ public class BloomFilterSizer {
         System.out.println("Bloom Filter Sizing");
         System.out.println("-------------------");
         System.out.println("n (items)              = " + n);
-        System.out.println("p (false positive rate)= " + p);
+        System.out.println("p (false positive rate)= " + (p * 100) + "%");
         System.out.println("m (bits)               = " + m);
         System.out.println("k (hash functions)     = " + k);
         System.out.printf("Approx memory          = %.2f MB%n", bitsToMegabytes(m));

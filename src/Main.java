@@ -1,17 +1,26 @@
 import bloom.Hash;
 import java.io.*;
 import java.util.*;
+import bloom.BloomFilterSizer;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        int m = 10000000;
-        int k = 7;
+
+        // sizing
+        int n      = 1600000; // train set
+        double expected   = 0.01;    // target 1% false positive rate
+
+        BloomFilterSizer.printSizingReport(n, expected);
+
+        int m = BloomFilterSizer.computeM(n, expected);
+        int k = BloomFilterSizer.computeK(n, expected);
+
         Hash filter = new Hash(m, k);
 
         String filePath = "pwnedpasswords_small.txt";
-        int totalToLoad = 1000000; // 1 million samples
-        int trainSize   = 800000;  // 80% train 20% negative
+        int totalToLoad = 2000000; // 1 million samples
+        int trainSize   = 1600000;  // 80% train 20% negative
 
         List<String> trainSet    = new ArrayList<>();
         List<String> negativeSet = new ArrayList<>();
@@ -47,7 +56,7 @@ public class Main {
         for (String hash : negativeSet) {
             if (filter.query(hash)) falsePositives++;
         }
-        double expected = (double) falsePositives/ negativeSet.size() * 100;
+
         double fpRate   = Math.pow(1 - Math.exp(-(double) k * trainSize / m), k) * 100;
 
         System.out.println("Negative test results:");
