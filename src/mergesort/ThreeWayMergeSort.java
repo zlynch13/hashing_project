@@ -5,7 +5,14 @@ public class ThreeWayMergeSort {
     private static void threeWaySort(int[] arr, int leftSide, int rightSide) {
 //     if (rightSide <= leftSide) return;
         if (leftSide >= rightSide) return;
-
+        if (rightSide - leftSide == 1) {
+            int temp = arr[leftSide];
+            if (arr[leftSide] > arr[rightSide]) {
+                arr[leftSide] = arr[rightSide];
+                arr[rightSide] = temp;
+            }
+            return;
+        }
         int oneThird = (rightSide - leftSide+1)/3;
         int leftMid = leftSide + oneThird;
         int rightMid = leftSide + 2*oneThird;
@@ -109,6 +116,14 @@ public class ThreeWayMergeSort {
     private static void threeWaySort(double[] arr, int leftSide, int rightSide) {
 //     if (rightSide <= leftSide) return;
         if (leftSide >= rightSide) return;
+        if (rightSide - leftSide == 1) {
+            double temp = arr[leftSide];
+            if (arr[leftSide] > arr[rightSide]) {
+                arr[leftSide] = arr[rightSide];
+                arr[rightSide] = temp;
+            }
+            return;
+        }
 
         int oneThird = (rightSide - leftSide+1)/3;
         int leftMid = leftSide + oneThird;
@@ -221,7 +236,7 @@ public class ThreeWayMergeSort {
         threeWaySort(arr, 0, arr.length-1);
         return arr;
     }
-    public static void runIntTest(int size, Random rand) {
+    public static double runIntTest(int size, Random rand) {
 //        Random rand = new Random();
         int[] intTest = new int[size];
         for (int i = 0; i < size; i++) {
@@ -230,15 +245,16 @@ public class ThreeWayMergeSort {
         long start = System.nanoTime();
         threeWaySort(intTest, 0, size - 1);
         long finish = System.nanoTime();
-        System.out.println(size + " Integer Array time in ms: " + (finish - start) / 1000000.0 );
+//        System.out.println(size + " Integer Array time in ms: " + (finish - start) / 1000000.0 );
         for (int i = 0; i < size-1; i++) {
             if (intTest[i] > intTest[i+1]) {
                 System.out.println("Failure");
                 break;
             }
         }
+        return (finish-start)/ 1000000.0;
     }
-    public static void runDoubleTest(int size, Random rand) {
+    public static double runDoubleTest(int size, Random rand) {
 //        Random rand = new Random();
         double[] doubleTest = new double[size];
         for (int i = 0; i < size; i++) {
@@ -247,13 +263,14 @@ public class ThreeWayMergeSort {
         long start = System.nanoTime();
         threeWaySort(doubleTest, 0, size - 1);
         long finish = System.nanoTime();
-        System.out.println(size + " Double Array time in ms: " + (finish - start) / 1000000.0 );
+//        System.out.println(size + " Double Array time in ms: " + (finish - start) / 1000000.0 );
         for (int i = 0; i < size-1; i++) {
             if (doubleTest[i] > doubleTest[i+1]) {
                 System.out.println("Failure");
                 break;
             }
         }
+        return (finish - start) / 1000000.0;
     }
     public static void main(String[] args) {
         testTime();
@@ -267,14 +284,20 @@ public class ThreeWayMergeSort {
         for (int i = 0; i < sizeWarmup; i++) {
             warmup[i] = rand.nextInt();
         }
+
         warmup = mainMerge(warmup);
         for (int exp = 0; exp < 7; exp++) {
             int size = 1 << (20+exp);
-
-            runIntTest(size, rand);
-            System.out.println();
-
-            runDoubleTest(size, rand);
+            double intTime = 0.0;
+            double doubleTime = 0.0;
+            int runs = 10;
+            for (int j = 0; j < runs; j++)
+            {
+                intTime += runIntTest(size, rand);
+                doubleTime += runDoubleTest(size, rand);
+            }
+            System.out.println("2^" + (20+exp) + " Integer average Array time in ms: " + intTime/ runs);
+            System.out.println("2^" + (20+exp) + " Double average Array time in ms: " + doubleTime/ runs);
             System.out.println();
         }
     }
